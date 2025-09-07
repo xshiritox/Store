@@ -24,17 +24,28 @@ export const useAuth = () => {
     try {
       const { data, error } = await supabase.auth.signUp({
         email,
-        password,
-        options: {
-          data: {
-            full_name: fullName,
-            role: role
-          }
-        }
+        password
       })
 
       if (error) throw error
 
+      // Explicitly create the profile after successful user creation
+      if (data.user) {
+        const { error: profileError } = await supabase
+          .from('profiles')
+          .insert({
+            id: data.user.id,
+            email: data.user.email!,
+            full_name: fullName,
+            role: role
+          })
+
+        if (profileError) {
+          console.error('Error creating profile:', profileError.message)
+          // Note: User is already created in auth, but profile creation failed
+          // You might want to handle this case based on your requirements
+        }
+      }
       return { data, error: null }
     } catch (error: any) {
       return { data: null, error: error.message }
