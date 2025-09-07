@@ -307,4 +307,3 @@ const handleRegister = async () => {
   }
 }
 </style>
-</template>

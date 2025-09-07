@@ -606,4 +606,3 @@ textarea.form-control {
   }
 }
 </style>
-</template>
