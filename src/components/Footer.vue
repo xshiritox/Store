@@ -10,9 +10,9 @@
         <div class="footer-section">
           <h4>Contactanos</h4>
           <div class="contact-info">
-            <p>📧 info@techstore.com</p>
-            <p>📞 +1 (555) 123-4567</p>
-            <p>📍 123 Tech Street, Digital City</p>
+            <p><Mail :size="18" class="icon" /> info@glowmakeup.com</p>
+            <p><Phone :size="18" class="icon" /> +1 (555) 123-4567</p>
+            <p><MapPin :size="18" class="icon" /> 123 Beauty Street, Glow City</p>
           </div>
         </div>
       </div>
@@ -23,6 +23,10 @@
     </div>
   </footer>
 </template>
+
+<script setup lang="ts">
+import { Mail, Phone, MapPin } from 'lucide-vue-next'
+</script>
 
 <style scoped>
 .footer {
@@ -78,10 +82,21 @@
 }
 
 .contact-info p {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
+  color: #9ca3af;
+  transition: color 0.2s;
+}
+
+.contact-info p:hover {
+  color: #3b82f6;
+}
+
+.contact-info .icon {
+  color: #3b82f6;
+  flex-shrink: 0;
 }
 
 .social-links {

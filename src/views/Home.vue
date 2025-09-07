@@ -46,19 +46,19 @@
       <div class="container">
         <div class="grid grid-3">
           <div class="feature">
-            <div class="feature-icon">🚚</div>
+            <div class="feature-icon"><Award :size="40" stroke-width="1.5" /></div>
             <h3>Calidad</h3>
             <p>Todos nuestros productos son de alta calidad y cumplen con los estándares más altos.</p>
           </div>
           
           <div class="feature">
-            <div class="feature-icon">🛡️</div>
+            <div class="feature-icon"><Handshake :size="40" stroke-width="1.5" /></div>
             <h3>Confianza</h3>
             <p>Construimos relaciones duraderas basadas en transparencia y confiabilidad.</p>
           </div>
           
           <div class="feature">
-            <div class="feature-icon">💳</div>
+            <div class="feature-icon"><ShieldCheck :size="40" stroke-width="1.5" /></div>
             <h3>Pago Seguro</h3>
             <p>Múltiples métodos de pago seguros. Transacciones protegidas con encriptación SSL.</p>
           </div>
@@ -72,6 +72,7 @@
 import { computed, onMounted } from 'vue'
 import ProductCard from '../components/ProductCard.vue'
 import { useProducts } from '../stores/products'
+import { Award, Handshake, ShieldCheck } from 'lucide-vue-next'
 import { fallbackProducts } from '../data/products'
 import type { Product } from '../types'
 
@@ -183,8 +184,16 @@ onMounted(() => {
 }
 
 .feature-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  color: #3b82f6;
+  transition: transform 0.3s ease;
+}
+
+.feature:hover .feature-icon {
+  transform: scale(1.1);
+  color: #2563eb;
 }
 
 .feature h3 {
