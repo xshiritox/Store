@@ -5,15 +5,14 @@
       <div class="container">
         <div class="hero-content">
           <div class="hero-text">
-            <h1>Tecnología de Vanguardia</h1>
-            <p>Descubre los últimos productos tecnológicos con la mejor calidad y precios competitivos. Tu tienda de confianza para todo lo digital.</p>
+            <h1>Conoce nuestra tienda digital</h1>
+            <p>Descubre los mejores productos con la mejor calidad y precios desde tu comodidad.</p>
             <div class="hero-actions">
-              <router-link to="/products" class="btn btn-primary">Explorar Productos</router-link>
-              <router-link to="/about" class="btn btn-secondary">Conoce Más</router-link>
+              <router-link to="/products" class="btn btn-primary">Ver Productos</router-link>
             </div>
           </div>
           <div class="hero-image">
-            <img src="https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Tecnología moderna" />
+            <img src="/images/home.webp" alt="Productos de maquillaje" />
           </div>
         </div>
       </div>
@@ -23,8 +22,8 @@
     <section class="featured-products">
       <div class="container">
         <div class="section-header">
-          <h2>Productos Destacados</h2>
-          <p>Los productos más populares y mejor valorados por nuestros clientes</p>
+          <h2> Nuevos Productos</h2>
+          <p>Los productos más recientes de nuestra tienda</p>
         </div>
         
         <div class="grid grid-3">
@@ -48,14 +47,14 @@
         <div class="grid grid-3">
           <div class="feature">
             <div class="feature-icon">🚚</div>
-            <h3>Envío Gratuito</h3>
-            <p>Envío gratis en compras mayores a $500. Recibe tus productos en 2-3 días hábiles.</p>
+            <h3>Calidad</h3>
+            <p>Todos nuestros productos son de alta calidad y cumplen con los estándares más altos.</p>
           </div>
           
           <div class="feature">
             <div class="feature-icon">🛡️</div>
-            <h3>Garantía Total</h3>
-            <p>Todos nuestros productos incluyen garantía oficial del fabricante y soporte técnico.</p>
+            <h3>Confianza</h3>
+            <p>Construimos relaciones duraderas basadas en transparencia y confiabilidad.</p>
           </div>
           
           <div class="feature">
@@ -128,12 +127,21 @@ onMounted(() => {
   gap: 1rem;
 }
 
-.hero-image img {
+.hero-image {
+  margin: 2rem 0;
   width: 100%;
-  height: 400px;
-  object-fit: cover;
+  overflow: hidden;
   border-radius: 12px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 .featured-products {

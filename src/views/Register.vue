@@ -35,35 +35,61 @@
 
             <div class="form-group">
               <label for="password">Contraseña</label>
-              <input
-                v-model="form.password"
-                type="password"
-                id="password"
-                required
-                minlength="6"
-                class="form-control"
-                :disabled="loading"
-              >
+              <div class="password-input-container">
+                <input
+                  v-model="form.password"
+                  :type="showPassword ? 'text' : 'password'"
+                  id="password"
+                  required
+                  minlength="6"
+                  class="form-control"
+                  :disabled="loading"
+                >
+                <button 
+                  type="button" 
+                  class="password-toggle"
+                  @click="showPassword = !showPassword"
+                  :aria-label="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+                >
+                  <svg v-if="!showPassword" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                  </svg>
+                </button>
+              </div>
             </div>
 
             <div class="form-group">
               <label for="confirmPassword">Confirmar Contraseña</label>
-              <input
-                v-model="form.confirmPassword"
-                type="password"
-                id="confirmPassword"
-                required
-                class="form-control"
-                :disabled="loading"
-              >
-            </div>
-
-            <div class="form-group">
-              <label for="role">Tipo de Cuenta</label>
-              <select v-model="form.role" id="role" class="form-control" :disabled="loading">
-                <option value="user">Usuario (Comprador)</option>
-                <option value="admin">Administrador (Vendedor)</option>
-              </select>
+              <div class="password-input-container">
+                <input
+                  v-model="form.confirmPassword"
+                  :type="showConfirmPassword ? 'text' : 'password'"
+                  id="confirmPassword"
+                  required
+                  class="form-control"
+                  :disabled="loading"
+                >
+                <button 
+                  type="button" 
+                  class="password-toggle"
+                  @click="showConfirmPassword = !showConfirmPassword"
+                  :aria-label="showConfirmPassword ? 'Ocultar confirmación de contraseña' : 'Mostrar confirmación de contraseña'"
+                >
+                  <svg v-if="!showConfirmPassword" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                  </svg>
+                </button>
+              </div>
             </div>
 
             <div v-if="error" class="error-message">
@@ -83,10 +109,6 @@
             <p>¿Ya tienes cuenta? <router-link to="/login">Inicia sesión aquí</router-link></p>
           </div>
         </div>
-
-        <div class="auth-image">
-          <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Register" />
-        </div>
       </div>
     </div>
   </div>
@@ -104,10 +126,11 @@ const form = ref({
   fullName: '',
   email: '',
   password: '',
-  confirmPassword: '',
-  role: 'user' as 'user' | 'admin'
+  confirmPassword: ''
 })
 
+const showPassword = ref(false)
+const showConfirmPassword = ref(false)
 const loading = ref(false)
 const error = ref('')
 const success = ref('')
@@ -134,7 +157,7 @@ const handleRegister = async () => {
       form.value.email,
       form.value.password,
       form.value.fullName,
-      form.value.role
+      'user'
     )
 
     if (signUpError) {
@@ -168,8 +191,8 @@ const handleRegister = async () => {
 
 .auth-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  max-width: 1000px;
+  grid-template-columns: 1fr;
+  max-width: 500px;
   margin: 0 auto;
   background: white;
   border-radius: 16px;
@@ -230,6 +253,37 @@ const handleRegister = async () => {
 .form-control:disabled {
   background: #f9fafb;
   opacity: 0.7;
+}
+
+.password-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #64748b;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: color 0.2s;
+}
+
+.password-toggle:hover {
+  color: #2563eb;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.password-toggle:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3);
 }
 
 .error-message {

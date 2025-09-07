@@ -3,14 +3,12 @@
     <div class="container">
       <div class="header-content">
         <router-link to="/" class="logo">
-          <h1>TechStore</h1>
+          <h1>Glow Make-up Store</h1>
         </router-link>
         
         <nav class="nav" :class="{ 'nav-open': isMenuOpen }">
           <router-link to="/" @click="closeMenu">Inicio</router-link>
           <router-link to="/products" @click="closeMenu">Productos</router-link>
-          <router-link to="/about" @click="closeMenu">Nosotros</router-link>
-          <router-link to="/contact" @click="closeMenu">Contacto</router-link>
         </nav>
         
         <div class="header-actions">

@@ -5,8 +5,6 @@ import Home from './views/Home.vue'
 import Products from './views/Products.vue'
 import ProductDetail from './views/ProductDetail.vue'
 import Checkout from './views/Checkout.vue'
-import About from './views/About.vue'
-import Contact from './views/Contact.vue'
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import AdminDashboard from './views/AdminDashboard.vue'
@@ -17,8 +15,6 @@ const routes = [
   { path: '/products', component: Products },
   { path: '/product/:id', component: ProductDetail, props: true },
   { path: '/checkout', component: Checkout },
-  { path: '/about', component: About },
-  { path: '/contact', component: Contact },
   { path: '/login', component: Login },
   { path: '/register', component: Register },
   { 

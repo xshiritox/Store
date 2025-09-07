@@ -3,42 +3,22 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-section">
-          <h3>TechStore</h3>
-          <p>Tu tienda de tecnología de confianza. Productos de calidad con la mejor atención al cliente.</p>
+          <h3>Glow Make-up Store</h3>
+          <p>Tu tienda de maquillaje de confianza. Productos de calidad con la mejor atención al cliente.</p>
         </div>
-        
+       
         <div class="footer-section">
-          <h4>Enlaces</h4>
-          <ul>
-            <li><router-link to="/">Inicio</router-link></li>
-            <li><router-link to="/products">Productos</router-link></li>
-            <li><router-link to="/about">Nosotros</router-link></li>
-            <li><router-link to="/contact">Contacto</router-link></li>
-          </ul>
-        </div>
-        
-        <div class="footer-section">
-          <h4>Contacto</h4>
+          <h4>Contactanos</h4>
           <div class="contact-info">
             <p>📧 info@techstore.com</p>
             <p>📞 +1 (555) 123-4567</p>
             <p>📍 123 Tech Street, Digital City</p>
           </div>
         </div>
-        
-        <div class="footer-section">
-          <h4>Síguenos</h4>
-          <div class="social-links">
-            <a href="#" aria-label="Facebook">📘</a>
-            <a href="#" aria-label="Twitter">🐦</a>
-            <a href="#" aria-label="Instagram">📷</a>
-            <a href="#" aria-label="LinkedIn">💼</a>
-          </div>
-        </div>
       </div>
       
       <div class="footer-bottom">
-        <p>&copy; 2025 TechStore. Todos los derechos reservados.</p>
+        <p>&copy; 2025  Glow Make-up Store. Todos los derechos reservados.</p>
       </div>
     </div>
   </footer>
