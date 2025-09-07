@@ -14,6 +14,10 @@
         </nav>
         
         <div class="header-actions">
+          <div class="auth-buttons">
+            <router-link to="/login" class="btn btn-outline">Iniciar Sesión</router-link>
+            <router-link to="/register" class="btn btn-primary">Registrarse</router-link>
+          </div>
           <button @click="$emit('toggle-cart')" class="cart-btn">
             <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l1.5 6m0 0h9"/>
@@ -113,7 +117,47 @@ const closeMenu = () => {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 0.75rem;
+  margin-right: 0.5rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-outline {
+  border: 1px solid #2563eb;
+  color: #2563eb;
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background-color: rgba(37, 99, 235, 0.05);
+}
+
+.btn-primary {
+  background-color: #2563eb;
+  color: white;
+  border: 1px solid transparent;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
 }
 
 .cart-btn {
@@ -148,62 +192,6 @@ const closeMenu = () => {
   justify-content: center;
 }
 
-.user-menu {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.user-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-.user-name {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #1e293b;
-}
-
-.user-role {
-  font-size: 0.75rem;
-  color: #2563eb;
-  font-weight: 600;
-}
-
-.logout-btn {
-  background: none;
-  border: none;
-  color: #64748b;
-  cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 6px;
-  transition: all 0.2s;
-}
-
-.logout-btn:hover {
-  color: #dc2626;
-  background: #fef2f2;
-}
-
-.auth-links {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.auth-link {
-  color: #64748b;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s;
-}
-
-.auth-link:hover {
-  color: #2563eb;
-}
-
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -223,46 +211,47 @@ const closeMenu = () => {
 
 @media (max-width: 768px) {
   .nav {
+    display: none;
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
     background: white;
     flex-direction: column;
-    gap: 0;
-    border-bottom: 1px solid #e5e7eb;
-    transform: translateY(-100%);
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s ease;
-    padding: 0 1rem;
+    padding: 1rem;
+    gap: 1rem;
+    border-top: 1px solid #e5e7eb;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   }
-
-  .nav-open {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: all;
+  
+  .auth-buttons {
+    flex-direction: column;
+    width: 100%;
+    margin: 0.5rem 0;
   }
-
-  .nav a {
-    padding: 1rem 0;
-    border-bottom: 1px solid #f1f5f9;
+  
+  .auth-buttons .btn {
+    width: 100%;
+    text-align: center;
   }
-
-  .user-info {
-    display: none;
-  }
-
-  .auth-links {
+  
+  .header-actions {
     gap: 0.5rem;
   }
-
-  .auth-links .btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
+  
+  .auth-buttons {
+    margin-right: 0;
   }
-
-  .menu-toggle {
+  
+  .nav.nav-open {
+    display: flex;
+  }
+  
+  .auth-buttons {
+    display: none;
+  }
+  
+  .nav.nav-open + .header-actions .auth-buttons {
     display: flex;
   }
 }
