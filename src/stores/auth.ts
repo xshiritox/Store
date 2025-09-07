@@ -22,40 +22,20 @@ export const useAuth = () => {
 
   const signUp = async (email: string, password: string, fullName: string, role: 'user' | 'admin' = 'user') => {
     try {
-      // First, sign up the user without any additional data to avoid trigger conflicts
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
-          emailRedirectTo: undefined // Disable email confirmation to avoid trigger issues
+          data: {
+            full_name: fullName,
+            role: role
+          }
         }
       })
 
       if (error) throw error
 
-      // Wait a moment for the user to be fully created in the auth system
-      if (data.user) {
-        // Small delay to ensure user is fully created before profile insertion
-        await new Promise(resolve => setTimeout(resolve, 100))
-        
-        const { error: profileError } = await supabase
-          .from('profiles')
-          .upsert({
-            id: data.user.id,
-            email: data.user.email!,
-            full_name: fullName,
-            role: role
-          }, {
-            onConflict: 'id'
-          })
-
-        if (profileError) {
-          console.error('Error creating profile:', profileError.message)
-          // If profile creation fails, we should clean up the auth user
-          await supabase.auth.signOut()
-          throw new Error(`Profile creation failed: ${profileError.message}`)
-        }
-      }
+      // The trigger will automatically create the profile
       return { data, error: null }
     } catch (error: any) {
       return { data: null, error: error.message }
